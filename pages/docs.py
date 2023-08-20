@@ -8,8 +8,6 @@ import yaml
 from yaml.loader import SafeLoader
 import streamlit_authenticator as stauth
 
-#Autor: Sergio Lopez
-
 #--------------------------------------------- page config ---------------------------------------------
 #basic configuration
 st.set_page_config(
@@ -153,12 +151,12 @@ menu_id = hc.nav_bar(
 if menu_id == 'Login':
     switch_page('login')
 
+if menu_id == 'Inicio':
+    switch_page('Main')
+
 
 if menu_id == 'About':
     switch_page('faq')
-
-if menu_id == 'Docs':
-    switch_page('docs')
 
 if menu_id == 'logout' and 'authenticator' in st.session_state:
     st.session_state['authenticator'].logout('Logout', 'main')
@@ -166,89 +164,59 @@ if menu_id == 'logout' and 'authenticator' in st.session_state:
     st.session_state['authentication_status'] = None
 
 #------------------------------------- Body ---------------------------------------------------------
-tetx = r'''
+
+clases_basicas = [int, str, list, dict, tuple, bool, float]
+
+for clase in clases_basicas:
+    with st.expander(r'''# **'''+str(clase.__name__)+'** '):
+        st.write(type(clase.__name__),key=clase.__name__)
+
+
+components.html('''
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-.big-font {
-    font-size:100px !important;
-    text-shadow:
-    1px 1px 1px red,
-    2px 2px 1px red;
-}
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
 
+  .container {
+    text-align: center;
+  }
 
+  .link {
+    font-size: 24px;
+    color: #0073e6;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
 
-@import url(https://fonts.googleapis.com/css?family=Signika:700,300,600);
-
-html, body { height: 100%; }
-body { display: flex; justify-content: center; align-items: center; margin:20px 0; text-align:center; background:beige; overflow:hidden; }
-
-h1 {
- font-size:5em;
- font:bold 7.5vw/1.6 'Signika', sans-serif;
- user-select:none;
-}
-
-h1 span { display:inline-block; animation:float .2s ease-in-out infinite; }
- @keyframes float {
-  0%,100%{ transform:none; }
-  33%{ transform:translateY(-1px) rotate(-2deg); }
-  66%{ transform:translateY(1px) rotate(2deg); }
-}
-body:hover span { animation:bounce .6s; }
-@keyframes bounce {
-  0%,100%{ transform:translate(0); }
-  25%{ transform:rotateX(20deg) translateY(2px) rotate(-3deg); }
-  50%{ transform:translateY(-20px) rotate(3deg) scale(1.1);  }
-}
-
-span:nth-child(4n) { color:hsl(50, 75%, 55%); text-shadow:1px 1px hsl(50, 75%, 45%), 2px 2px hsl(50, 45%, 45%), 3px 3px hsl(50, 45%, 45%), 4px 4px hsl(50, 75%, 45%); }
-span:nth-child(4n-1) { color:hsl(135, 35%, 55%); text-shadow:1px 1px hsl(135, 35%, 45%), 2px 2px hsl(135, 35%, 45%), 3px 3px hsl(135, 35%, 45%), 4px 4px hsl(135, 35%, 45%); }
-span:nth-child(4n-2) { color:hsl(155, 35%, 60%); text-shadow:1px 1px hsl(155, 25%, 50%), 2px 2px hsl(155, 25%, 50%), 3px 3px hsl(155, 25%, 50%), 4px 4px hsl(140, 25%, 50%); }
-span:nth-child(4n-3) { color:hsl(30, 65%, 60%); text-shadow:1px 1px hsl(30, 45%, 50%), 2px 2px hsl(30, 45%, 50%), 3px 3px hsl(30, 45%, 50%), 4px 4px hsl(30, 45%, 50%); }
-
-h1 span:nth-child(2){ animation-delay:.05s; }
-h1 span:nth-child(3){ animation-delay:.1s; }
-h1 span:nth-child(4){ animation-delay:.15s; }
-h1 span:nth-child(5){ animation-delay:.2s; }
-h1 span:nth-child(6){ animation-delay:.25s; }
-h1 span:nth-child(7){ animation-delay:.3s; }
-h1 span:nth-child(8){ animation-delay:.35s; }
-h1 span:nth-child(9){ animation-delay:.4s; }
-h1 span:nth-child(10){ animation-delay:.45s; }
-h1 span:nth-child(11){ animation-delay:.5s; }
-h1 span:nth-child(12){ animation-delay:.55s; }
-h1 span:nth-child(13){ animation-delay:.6s; }
-h1 span:nth-child(14){ animation-delay:.65s; }
-
-
-.big-font2 {
-    font:bold 2.5vw/1.6 'Signika', sans-serif;
-}
-.big-font3 {
-    font:bold 1.5vw/1.6 'Signika', sans-serif;
-}
+  .link:hover {
+    color: #0057b3;
+  }
 </style>
+<title>Documentación de Python</title>
+</head>
+<body>
+  <div class="container">
+    <p> Documentación de Python</p>
+    <a class="link" href="https://docs.python.org/3/" target="_blank">Ir a la documentación</a>
+  </div>
+</body>
+</html>
 
 
-# ¡Bienvenido al Club de Algoritmia en Python Avanzado (CAPA)!
-
-<p class="big-font2">
-¡Hola y bienvenido al Club de Algoritmia en Python Avanzado (CAPA)! Estamos emocionados de tenerte como parte de nuestra comunidad dedicada a la exploración y dominio de los algoritmos en el mundo de la programación.
-</p>
-
-
-<p class="big-font2">¡Esperamos verte en nuestras próximas sesiones! ¡Prepárate para desafiar tus límites y expandir tus horizontes algorítmicos!</p>
-
-<p class="big-font2">¡Bienvenido a CAPA!</p>
-'''
-
-with open('frontend/mainpage/mainpage.html') as f:
-  #Bug: st.markdown() doesn't work with the above code if it's not a string
-  st.markdown(tetx, unsafe_allow_html=True)
-
-
-
-
+''')
 
 #------------------------------------- Footer ---------------------------------------------------------
 
