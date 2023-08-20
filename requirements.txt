@@ -7,3 +7,4 @@ st-pages==0.4.1
 streamlit-extras==0.2.7
 streamlit-code-editor==0.1.8
 hydralit-components==1.0.10
+streamlit-authenticator==0.2.2
