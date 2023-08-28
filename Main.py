@@ -28,16 +28,16 @@ st.set_page_config(
 )
 
 #Disable sidebar
-st.markdown(
-    """
-<style>
-    [data-testid="collapsedControl"] {
-        display: none
-    }
-</style>
-""",
-    unsafe_allow_html=True,
-)
+#st.markdown(
+#    """
+#<style>
+#    [data-testid="collapsedControl"] {
+#        display: none
+#    }
+#</style>
+#""",
+#    unsafe_allow_html=True,
+#)
 
 
 def set_sessionid():
@@ -137,11 +137,11 @@ if 'username' not in st.session_state or st.session_state['username'] is None:
     ]
 else:
     menu_data = [
-    {'icon': "fa-solid fa-radar",'label':"Problemas", 'submenu':[{'id':' subid11','icon': "fa fa-paperclip", 'label':"Basicos"},{'id':'subid12','icon': "fa fa-database", 'label':"Intermedios"},{'id':'subid13','icon': "💀", 'label':"Avanzados"}]},
+    {'icon': "fa-solid fa-radar",'label':"Problemas", 'submenu':[{'id':' subid11','icon': "fa fa-paperclip", 'label':"Basicos"},{'id':'subid12','icon': "fa fa-database", 'label':"Intermedios"},{'id':'subid13','icon': "💀", 'label':"Avanzados"},{'id':'subid14','icon': "🔧", 'label':"Editor"}]},
     {'id':'contest','icon': "🏆", 'label':"Concursos"},
     {'icon': "fas fa-tachometer-alt", 'label':"Dashboard",'ttip':"I'm the Dashboard tooltip!"}, #can add a tooltip message
     {'icon': "far fa-copy", 'label':"Docs"},
-    {'icon': "fa-solid fa-radar",'label':"Tests", 'submenu':[{'label':"Basicos 1", 'icon': "🐛"},{'icon':'🐍','label':"Intermedios"},{'icon':'🐉','label':"Avanzados",}]},
+    {'icon': "fa-solid fa-radar",'label':"Tests", 'submenu':[{'label':"Basicos 1", 'icon': "🐛"},{'icon':'🐍','label':"Intermedios"},{'icon':'🐉','label':"Avanzados",},{'id':'subid144','icon': "🔧", 'label':"Editor" }]},
     {'id':'About','icon':"❓",'label':"FAQ"},
     {'id':'contact','icon':"📩",'label':"Contacto"},
     {'id':'logout','icon': "🚪", 'label':"Logout"},#no tooltip message
@@ -174,8 +174,11 @@ if menu_id == 'About':
 if menu_id == 'Docs':
     switch_page('docs')
 
-if menu_id == 'Basicos 1':
+if menu_id == 'subid144':
     switch_page('tests')
+
+if menu_id == 'subid14':
+    switch_page('problems_editor')
 
 if menu_id == 'logout' and 'authenticator' in st.session_state:
     st.session_state['authenticator'].logout('Logout', 'main')

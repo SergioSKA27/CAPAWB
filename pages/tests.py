@@ -54,7 +54,7 @@ menu_id = hc.nav_bar(
         override_theme=over_theme,
         home_name='Inicio',
         hide_streamlit_markers=False, #will show the st hamburger as well as the navbar now!
-        sticky_nav=False, #at the top or not
+        sticky_nav=True, #at the top or not
         sticky_mode='sticky', #jumpy or not-jumpy, but sticky or pinned
         first_select=20
     )
@@ -68,7 +68,7 @@ if menu_id == 'Inicio':
 #------------------------------------- body ---------------------------------------------------------
 st.header('Tests Editor')
 
-st.text(st.session_state)
+#st.text(st.session_state)
 test =st.text_input('Ingrese el nombre del test','Test uno')
 t = test_e.test(test)
 if 'test' not in st.session_state:
@@ -77,8 +77,13 @@ else:
     if st.session_state['test'].test_name != test:
         st.session_state['test'].test_name = test
 
-if 'test_edit' not in st.session_state:
-  st.session_state['test_edit'] = None
+
+level = st.slider('Nivel del test',1,10)
+
+if 'level-test' not in st.session_state:
+  st.session_state['level-test'] = level
+else:
+  st.session_state['level-test'] = level
 
 
 if 'qnum' not in st.session_state:
@@ -86,8 +91,7 @@ if 'qnum' not in st.session_state:
 
 if 'questions_data' not in st.session_state:
   st.session_state['questions_data'] = {}
-else:
-    st.write(len(st.session_state['questions_data']))
+
 
 
 
