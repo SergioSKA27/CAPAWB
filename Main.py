@@ -140,7 +140,7 @@ else:
     {'icon': "fa-solid fa-radar",'label':"Problemas", 'submenu':[{'id':' subid11','icon': "fa fa-paperclip", 'label':"Basicos"},{'id':'subid12','icon': "fa fa-database", 'label':"Intermedios"},{'id':'subid13','icon': "💀", 'label':"Avanzados"},{'id':'subid14','icon': "🔧", 'label':"Editor"}]},
     {'id':'contest','icon': "🏆", 'label':"Concursos"},
     {'icon': "fas fa-tachometer-alt", 'label':"Dashboard",'ttip':"I'm the Dashboard tooltip!"}, #can add a tooltip message
-    {'icon': "far fa-copy", 'label':"Docs"},
+    {'id':'docs','icon': "far fa-copy", 'label':"Docs"},
     {'icon': "fa-solid fa-radar",'label':"Tests", 'submenu':[{'label':"Basicos 1", 'icon': "🐛"},{'icon':'🐍','label':"Intermedios"},{'icon':'🐉','label':"Avanzados",},{'id':'subid144','icon': "🔧", 'label':"Editor" }]},
     {'id':'About','icon':"❓",'label':"FAQ"},
     {'id':'contact','icon':"📩",'label':"Contacto"},
@@ -171,7 +171,7 @@ if menu_id == 'Login':
 if menu_id == 'About':
     switch_page('faq')
 
-if menu_id == 'Docs':
+if menu_id == 'docs':
     switch_page('docs')
 
 if menu_id == 'subid144':

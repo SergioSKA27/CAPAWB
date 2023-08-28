@@ -13,7 +13,7 @@ import random
 import numpy as np
 import pandas as pd
 import plotly.express as px
-
+from streamlit_extras.dataframe_explorer import dataframe_explorer
 
 #--------------------------------------------- page config ---------------------------------------------
 #basic page configuration
@@ -67,6 +67,7 @@ if menu_id == 'Inicio':
 
 st.header('Dashboard 🔎')
 # Generar datos aleatorios
+@st.cache_data
 def generate_random_data(num_students):
     data = []
     for _ in range(num_students):
@@ -82,6 +83,7 @@ def generate_random_data(num_students):
     return data
 
 # Crear un DataFrame a partir de los datos generados
+@st.cache_data
 def create_dataframe(data):
     columns = ["Student ID", "Nombre", "Edad", "Genero", "Experiencia en Programacion", "Examen de Midterm", "Examen Final"]
     columns += [f"Tarea {i+1}" for i in range(5)]
@@ -92,9 +94,7 @@ def create_dataframe(data):
 random_data = generate_random_data(20)
 student_dataframe = create_dataframe(random_data)
 
-
-st.dataframe(student_dataframe)
-
+st.dataframe(student_dataframe, use_container_width=True)
 
 
 # Create plots using Plotly
