@@ -161,7 +161,7 @@ if menu_id == 'About':
 if menu_id == 'logout' and 'authenticator' in st.session_state:
     st.session_state['authenticator'].logout('Logout', 'main')
     st.session_state['name'] = None
-    st.session_state['authentication_status'] = None
+    del st.session_state['authentication_status']
 
 #------------------------------------- Body ---------------------------------------------------------
 
@@ -169,7 +169,7 @@ clases_basicas = [int, str, list, dict, tuple, bool, float]
 
 for clase in clases_basicas:
     with st.expander(r'''# **'''+str(clase.__name__)+'** '):
-        st.write(type(clase.__name__),key=clase.__name__)
+        st.write(type(clase),key=clase.__name__)
 
 
 components.html('''

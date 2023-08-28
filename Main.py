@@ -7,11 +7,13 @@ from streamlit_extras.switch_page_button import switch_page
 import yaml
 from yaml.loader import SafeLoader
 import streamlit_authenticator as stauth
+import pages.modules.navbar as navbar
+import uuid
 
 #Autor: Sergio Lopez
 
 #--------------------------------------------- page config ---------------------------------------------
-#basic configuration
+#basic page configuration
 st.set_page_config(
     page_title='CAPA',
     page_icon=":snake:",
@@ -26,16 +28,28 @@ st.set_page_config(
 )
 
 #Disable sidebar
-st.markdown(
-    """
-<style>
-    [data-testid="collapsedControl"] {
-        display: none
-    }
-</style>
-""",
-    unsafe_allow_html=True,
-)
+#st.markdown(
+#    """
+#<style>
+#    [data-testid="collapsedControl"] {
+#        display: none
+#    }
+#</style>
+#""",
+#    unsafe_allow_html=True,
+#)
+
+
+def set_sessionid():
+    return str(uuid.uuid1())
+
+if  "session_st" not in st.session_state:
+    st.session_state["session_st"] = None
+
+if st.session_state["session_st"] == None:
+    st.session_state["session_st"] = set_sessionid()
+
+
 
 #balloons :)
 st.balloons()
@@ -84,7 +98,7 @@ show_logos()
 #------------------------------------- Navbar ---------------------------------------------------------
 
 
-#st.write(st.session_state)
+st.text(st.session_state)
 
 if 'name' in st.session_state:
   user = st.session_state['name']
@@ -127,7 +141,7 @@ else:
     {'id':'contest','icon': "🏆", 'label':"Concursos"},
     {'icon': "fas fa-tachometer-alt", 'label':"Dashboard",'ttip':"I'm the Dashboard tooltip!"}, #can add a tooltip message
     {'icon': "far fa-copy", 'label':"Docs"},
-    {'icon': "fa-solid fa-radar",'label':"Tests", 'submenu':[{'label':"Basicos", 'icon': "🐛"},{'icon':'🐍','label':"Intermedios"},{'icon':'🐉','label':"Avanzados",}]},
+    {'icon': "fa-solid fa-radar",'label':"Tests", 'submenu':[{'label':"Basicos 1", 'icon': "🐛"},{'icon':'🐍','label':"Intermedios"},{'icon':'🐉','label':"Avanzados",}]},
     {'id':'About','icon':"❓",'label':"FAQ"},
     {'id':'contact','icon':"📩",'label':"Contacto"},
     {'id':'logout','icon': "🚪", 'label':"Logout"},#no tooltip message
@@ -159,6 +173,9 @@ if menu_id == 'About':
 
 if menu_id == 'Docs':
     switch_page('docs')
+
+if menu_id == 'Basicos 1':
+    switch_page('tests')
 
 if menu_id == 'logout' and 'authenticator' in st.session_state:
     st.session_state['authenticator'].logout('Logout', 'main')
