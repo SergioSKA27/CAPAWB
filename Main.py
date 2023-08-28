@@ -141,6 +141,7 @@ else:
     {'id':'contest','icon': "🏆", 'label':"Concursos"},
     {'icon': "fas fa-tachometer-alt", 'label':"Dashboard",'ttip':"I'm the Dashboard tooltip!"}, #can add a tooltip message
     {'id':'docs','icon': "far fa-copy", 'label':"Docs"},
+    {'id':'code','icon': "👨‍💻", 'label':"Editor de Código"},
     {'icon': "fa-solid fa-radar",'label':"Tests", 'submenu':[{'label':"Basicos 1", 'icon': "🐛"},{'icon':'🐍','label':"Intermedios"},{'icon':'🐉','label':"Avanzados",},{'id':'subid144','icon': "🔧", 'label':"Editor" }]},
     {'id':'About','icon':"❓",'label':"FAQ"},
     {'id':'contact','icon':"📩",'label':"Contacto"},
@@ -183,6 +184,8 @@ if menu_id == 'subid14':
 if menu_id == 'Dashboard':
     switch_page('dashboard')
 
+if menu_id == 'code':
+    switch_page('code_editor')
 
 if menu_id == 'logout' and 'authenticator' in st.session_state:
     st.session_state['authenticator'].logout('Logout', 'main')
