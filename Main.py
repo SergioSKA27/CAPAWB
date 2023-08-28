@@ -28,16 +28,16 @@ st.set_page_config(
 )
 
 #Disable sidebar
-#st.markdown(
-#    """
-#<style>
-#    [data-testid="collapsedControl"] {
-#        display: none
-#    }
-#</style>
-#""",
-#    unsafe_allow_html=True,
-#)
+st.markdown(
+    """
+<style>
+    [data-testid="collapsedControl"] {
+        display: none
+    }
+</style>
+""",
+    unsafe_allow_html=True,
+)
 
 
 def set_sessionid():

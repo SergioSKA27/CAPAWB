@@ -33,16 +33,16 @@ st.set_page_config(
 )
 
 #Disable sidebar
-#st.markdown(
-#    """
-#<style>
-#    [data-testid="collapsedControl"] {
-#        display: none
-#    }
-#</style>
-#""",
-#    unsafe_allow_html=True,
-#)
+st.markdown(
+    """
+<style>
+    [data-testid="collapsedControl"] {
+        display: none
+    }
+</style>
+""",
+    unsafe_allow_html=True,
+)
 
 
 #------------------------------------- Navbar ---------------------------------------------------------
@@ -96,7 +96,7 @@ cols = st.columns([.7,.3],gap='large')
 t = st.selectbox('Seleccione el tipo de pregunta que desea agregar',('opcion multiple','selccion multiple','entrada libre','codigo','ordenacion'),key='s'+str(st.session_state['qnum']))
 
 if t == 'opcion multiple':
-  st.write('## Ingrese el texto de la pregunta '+str(st.session_state['qnum']))
+  st.write('## Ingrese el texto de la pregunta '+str(st.session_state['qnum']+1))
   question_text = st.text_area('Texto de la pregunta','Pregunta?', height=100,key='text'+str(st.session_state['qnum']))
   col =st.columns(3)
   answ_num = col[0].number_input('**Ingrese el numero de respuestas**', min_value=1, max_value=5,key='num'+str(st.session_state['qnum']))
