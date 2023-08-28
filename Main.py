@@ -28,16 +28,16 @@ st.set_page_config(
 )
 
 #Disable sidebar
-#st.markdown(
-#    """
-#<style>
-#    [data-testid="collapsedControl"] {
-#        display: none
-#    }
-#</style>
-#""",
-#    unsafe_allow_html=True,
-#)
+st.markdown(
+    """
+<style>
+    [data-testid="collapsedControl"] {
+        display: none
+    }
+</style>
+""",
+    unsafe_allow_html=True,
+)
 
 
 def set_sessionid():
@@ -98,7 +98,7 @@ show_logos()
 #------------------------------------- Navbar ---------------------------------------------------------
 
 
-st.text(st.session_state)
+#st.text(st.session_state)
 
 if 'name' in st.session_state:
   user = st.session_state['name']
@@ -179,6 +179,10 @@ if menu_id == 'subid144':
 
 if menu_id == 'subid14':
     switch_page('problems_editor')
+
+if menu_id == 'Dashboard':
+    switch_page('dashboard')
+
 
 if menu_id == 'logout' and 'authenticator' in st.session_state:
     st.session_state['authenticator'].logout('Logout', 'main')
